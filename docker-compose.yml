@@ -1,0 +1,16 @@
+services:
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - target: 9090
+        published: 9090
+    volumes:
+      - type: bind
+        source: ./etc/prometheus
+        target: /etc/prometheus
+
+  grafana:
+    image: grafana/grafana-enterprise
+    ports:
+      - target: 3000
+        published: 3000
