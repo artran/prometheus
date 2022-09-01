@@ -11,6 +11,12 @@ services:
 
   grafana:
     image: grafana/grafana-enterprise
+    depends_on:
+      - prometheus
     ports:
       - target: 3000
         published: 3000
+
+  node-exporter:
+    image: prom/node-exporter
+    restart: unless-stopped
