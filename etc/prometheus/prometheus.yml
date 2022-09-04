@@ -15,13 +15,6 @@ scrape_configs:
       - targets:
           - localhost:9090
 
-  # Monitor the host that Prometheus is running on
-  # Use Dashboard ID: 1860 in Grafana
-  - job_name: 'node'
-    static_configs:
-      - targets:
-          - node-exporter:9100
-
   # Get other configs from files in /etc/prometheus/sd
   - job_name: file
     file_sd_configs:

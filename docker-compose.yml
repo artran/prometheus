@@ -20,7 +20,3 @@ services:
         published: 3000
     volumes:
       - ./data/grafana:/var/lib/grafana
-
-  node-exporter:
-    image: prom/node-exporter
-    restart: unless-stopped
