@@ -1,6 +1,7 @@
 services:
   prometheus:
     image: prom/prometheus
+    restart: unless-stopped
     ports:
       - target: 9090
         published: 9090
@@ -11,11 +12,14 @@ services:
 
   grafana:
     image: grafana/grafana-enterprise
+    restart: unless-stopped
     depends_on:
       - prometheus
     ports:
       - target: 3000
         published: 3000
+    volumes:
+      - ./data/grafana:/var/lib/grafana
 
   node-exporter:
     image: prom/node-exporter
