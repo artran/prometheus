@@ -9,17 +9,21 @@ alerting:
           # - alertmanager:9093
 
 scrape_configs:
+  # Monitor Prometheus itself
   - job_name: "prometheus"
     static_configs:
       - targets:
           - localhost:9090
 
-  # - job_name: 'docker'
-  #   static_configs:
-  #     - targets:
-  #         - host.docker.internal:9323
-
+  # Monitor the host that Prometheus is running on
+  # Use Dashboard ID: 1860 in Grafana
   - job_name: 'node'
     static_configs:
       - targets:
           - node-exporter:9100
+
+  # Get other configs from files in /etc/prometheus/sd
+  - job_name: file
+    file_sd_configs:
+      - files:
+          - '/etc/prometheus/sd/*.yml'
